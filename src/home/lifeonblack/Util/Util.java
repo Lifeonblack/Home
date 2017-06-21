@@ -67,16 +67,13 @@ public class Util {
 
     public static boolean homeExisted(String playername, Plugin plugin, String homename) {
         String name = playername;
-        File file = new File(plugin.getDataFolder() + "/home", name + ".yml");
+        File file = new File(plugin.getDataFolder() + "/homes", name + ".yml");
         if(!file.exists()) {
             return false;
         }
         FileConfiguration config = YamlConfiguration.loadConfiguration(file);
-        for(String names : config.getKeys(false)) {
-            if(names.equals(homename)) {
-                return true;
-            }
-            continue;
+        if(config.contains(homename)) {
+            return true;
         }
         return false;
     }
@@ -96,5 +93,19 @@ public class Util {
         double pitch = config.getDouble(homename + ".pitch");
         Location location = new Location(world, x, y, z, (float) yaw, (float)pitch);
         return location;
+    }
+
+    public static void deleteHome(String playername, Plugin plugin, String homename) {
+        File file = new File(plugin.getDataFolder() + "/homes", playername + ".yml");
+        FileConfiguration config = YamlConfiguration.loadConfiguration(file);
+        config.set(homename, null);
+    }
+
+    public static void clearHome(String playername, Plugin plugin) {
+        File file = new File(plugin.getDataFolder() + "/homes", playername + ".yml");
+        FileConfiguration config = YamlConfiguration.loadConfiguration(file);
+        for(String homenames : config.getKeys(false)) {
+            config.set(homenames, null);
+        }
     }
 }

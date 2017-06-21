@@ -38,7 +38,7 @@ public class SetCommand extends AbstractCommand {
         }
 
         if(args.length == 1) {
-            sender.sendMessage(Util.getLocalizedMessage("Incorrect Usage"));
+            sendUsage();
             return;
         }
 
@@ -62,11 +62,14 @@ public class SetCommand extends AbstractCommand {
             Player psender = (Player) sender;
             Player player = Bukkit.getPlayer(args[1]);
             if(player == null) {
-                OfflinePlayer offplayer = Bukkit.getOfflinePlayer(args[1]);
-                if(offplayer == null) {
-                    sender.sendMessage(Util.getLocalizedMessage("Player Not Exist"));
-                    return;
+                for(OfflinePlayer offplayers : Bukkit.getOfflinePlayers()) {
+                    if(!offplayers.equals(args[1])) {
+                        sender.sendMessage(Util.getLocalizedMessage("Player Not Exist"));
+                        return;
+                    }
+                    continue;
                 }
+                OfflinePlayer offplayer = Bukkit.getOfflinePlayer(args[1]);
                 if(Util.homeExisted(offplayer.getName(), Home.getInstance(), args[2])) {
                     sender.sendMessage(Util.getLocalizedMessage("Home Already Existed"));
                     return;

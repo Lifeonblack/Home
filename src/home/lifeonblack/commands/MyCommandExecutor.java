@@ -19,17 +19,17 @@ public class MyCommandExecutor implements CommandExecutor {
             return true;
         }
 
-        switch(args[0].toLowerCase()) {
-            case "help":
-                command = new HelpCommand(sender);
-                command.execute(sender, cmd, label, args);
-                break;
-            case "set":
-                command = new SetCommand(sender);
-                command.execute(sender, cmd, label, args);
-            default:
-                sender.sendMessage(Util.getLocalizedMessage("Unknown Command"));
+        if(args[0].equalsIgnoreCase("help")) {
+            command = new HelpCommand(sender);
+            command.execute(sender, cmd, label, args);
+            return true;
         }
+        if(args[0].equalsIgnoreCase("set")) {
+            command = new SetCommand(sender);
+            command.execute(sender, cmd, label, args);
+            return true;
+        }
+        sender.sendMessage(Util.getLocalizedMessage("Incorrect Usage"));
         return false;
     }
 }
