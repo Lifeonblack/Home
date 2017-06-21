@@ -15,6 +15,7 @@ public class MyCommandExecutor implements CommandExecutor {
         AbstractCommand command = new HelpCommand(sender);
 
         if(args.length == 0) {
+            command = new GoHomeCommand(sender);
             command.execute(sender, cmd, label, args);
             return true;
         }
