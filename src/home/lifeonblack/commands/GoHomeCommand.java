@@ -61,5 +61,6 @@ public class GoHomeCommand extends AbstractCommand {
             player.sendMessage(Util.getLocalizedMessage("Home Teleport").replace("%home%", args[1]));
             return;
         }
+        return;
     }
 }
