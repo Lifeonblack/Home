@@ -1,0 +1,31 @@
+#############
+########
+####
+
+# Specify your language
+Language: english
+
+# For english
+lang-english:
+
+  # When using a incorrect usage of command
+  Incorrect Usage: '&b&lHome&f&l>> &eIncorrect usage'
+
+  # If the player has no permission
+  No Permission: '&b&lHome&f&l>> &cYou have no permission to do that'
+
+  # Change the help description
+  Help:
+
+    help: '&e/home help Displays this, [must] <option>'
+    list: '&e/home list <player> List all homes'
+    set: '&e/home set <player> [name] Set your home'
+    invite: '&e/home invite [player] Invite someone to your home'
+    visit: '&e/home visit [name] Visit someone''s home'
+    delete: '&e/home delete <player> [name] Delete a home'
+    vtoggle: '&e/home vtoggle <option> Toggle has 3 option: invite-only, public, disable'
+    fvisit: '&e/home fvisit [name] Force visit to someone''s home'
+    clear: '&e/home clear <player> Clear all home created'
+
+  # If the command is unknown
+  Unknown Command: '&b&lHome&f&l>> &eUnknown command'

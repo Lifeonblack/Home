@@ -1,0 +1,7 @@
+name: HomeReloaded
+version: 1.0
+author: Lifeonblack
+main: home.lifeonblack.Home
+commands:
+  home:
+    description: check all possible commands
