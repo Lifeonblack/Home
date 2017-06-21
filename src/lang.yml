@@ -19,13 +19,14 @@ lang-english:
 
     help: '&e/home help Displays this, [must] <option>'
     list: '&e/home list <player> List all homes'
-    set: '&e/home set <player> [name] Set your home'
+    set: '&e/home set <player> <name> Set your home'
     invite: '&e/home invite [player] Invite someone to your home'
     visit: '&e/home visit [name] Visit someone''s home'
     delete: '&e/home delete <player> [name] Delete a home'
     vtoggle: '&e/home vtoggle <option> Toggle has 3 option: invite-only, public, disable'
     fvisit: '&e/home fvisit [name] Force visit to someone''s home'
     clear: '&e/home clear <player> Clear all home created'
+    go: '&e/home go <name> Go to a home'
 
   # If the command is unknown
   Unknown Command: '&b&lHome&f&l>> &cUnknown command'
@@ -41,3 +42,15 @@ lang-english:
 
   # Stated player is not existed
   Player Not Exist: '&b&lHome&f&l>> &cPlayer is not existed'
+
+  # If the default home is already existed
+  Default Home Existed: '&b&lHome&f&l>> &eDefault home is already existed'
+
+  # If the default home saved successfully
+  Default Home Saved: '&b&lHome&f&l>> &eDefault home saved successfully'
+
+  # If the player have no home
+  No Home: '&b&lHome&f&l>> &eHome is not existed'
+
+  # Home teleport successfully
+  Home Teleport: '&b&lHome&f&l>> &eSuccessfully teleported to &7%home%'

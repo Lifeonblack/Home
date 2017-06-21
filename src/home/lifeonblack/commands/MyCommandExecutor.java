@@ -29,6 +29,11 @@ public class MyCommandExecutor implements CommandExecutor {
             command.execute(sender, cmd, label, args);
             return true;
         }
+        if(args[0].equalsIgnoreCase("go")) {
+            command = new GoHomeCommand(sender);
+            command.execute(sender, cmd, label, args);
+            return true;
+        }
         sender.sendMessage(Util.getLocalizedMessage("Incorrect Usage"));
         return false;
     }

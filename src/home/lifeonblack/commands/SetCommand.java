@@ -38,12 +38,23 @@ public class SetCommand extends AbstractCommand {
         }
 
         if(args.length == 1) {
-            sendUsage();
+            Player player = (Player) sender;
+            if(Util.homeExisted(player.getName(), Home.getInstance(), "default")) {
+                player.sendMessage(Util.getLocalizedMessage("Default Home Existed"));
+                return;
+            }
+            Util.saveHome(player.getLocation(),player.getName(),  Home.getInstance(), "default");
+            player.sendMessage(Util.getLocalizedMessage("Default Home Saved"));
             return;
         }
 
         // home set [name]
         if(args.length == 2) {
+            Integer permCount = Util.getHomeCount(sender.getName(), Home.getInstance()) + 1;
+            if(!hasPermission(".multi." + permCount.toString())) {
+                sender.sendMessage(Util.getLocalizedMessage("No Permission"));
+                return;
+            }
             Player player = (Player) sender;
             if(Util.homeExisted(player.getName(), Home.getInstance(), args[1])) {
                 player.sendMessage(Util.getLocalizedMessage("Home Already Existed"));

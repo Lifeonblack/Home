@@ -13,6 +13,9 @@ import org.bukkit.plugin.Plugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Raymart on 6/20/2017.
@@ -33,7 +36,8 @@ public class Util {
         return "lang-" + language.toLowerCase();
     }
 
-    public static void saveHome(Location location, String playername, Plugin plugin, String homename) {
+    public static void saveHome(Location location, String playername, Plugin plugin, String homenam) {
+        String homename = homenam.toLowerCase();
         String world = location.getWorld().getName();
         double x = location.getX();
         double y = location.getY();
@@ -65,7 +69,8 @@ public class Util {
         }
     }
 
-    public static boolean homeExisted(String playername, Plugin plugin, String homename) {
+    public static boolean homeExisted(String playername, Plugin plugin, String homenam) {
+        String homename = homenam.toLowerCase();
         String name = playername;
         File file = new File(plugin.getDataFolder() + "/homes", name + ".yml");
         if(!file.exists()) {
@@ -78,7 +83,8 @@ public class Util {
         return false;
     }
 
-    public static Location getHome(String playername, Plugin plugin, String homename) {
+    public static Location getHome(String playername, Plugin plugin, String homenam) {
+        String homename = homenam.toLowerCase();
         String name = playername;
         File file = new File(plugin.getDataFolder() + "/homes", name + ".yml");
         FileConfiguration config = YamlConfiguration.loadConfiguration(file);
@@ -95,7 +101,20 @@ public class Util {
         return location;
     }
 
-    public static void deleteHome(String playername, Plugin plugin, String homename) {
+    public static Integer getHomeCount(String playername, Plugin plugin) {
+        String name = playername;
+        File file = new File(plugin.getDataFolder() + "/homes", name + ".yml");
+        FileConfiguration config = YamlConfiguration.loadConfiguration(file);
+        Set<String> set = config.getKeys(false);
+        if(set == null) {
+            return 0;
+        }
+        List<String> list = new ArrayList<>(set);
+        return list.size();
+    }
+
+    public static void deleteHome(String playername, Plugin plugin, String homenam) {
+        String homename = homenam.toLowerCase();
         File file = new File(plugin.getDataFolder() + "/homes", playername + ".yml");
         FileConfiguration config = YamlConfiguration.loadConfiguration(file);
         config.set(homename, null);
