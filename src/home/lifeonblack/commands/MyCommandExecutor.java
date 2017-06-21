@@ -24,6 +24,9 @@ public class MyCommandExecutor implements CommandExecutor {
                 command = new HelpCommand(sender);
                 command.execute(sender, cmd, label, args);
                 break;
+            case "set":
+                command = new SetCommand(sender);
+                command.execute(sender, cmd, label, args);
             default:
                 sender.sendMessage(Util.getLocalizedMessage("Unknown Command"));
         }

@@ -28,4 +28,16 @@ lang-english:
     clear: '&e/home clear <player> Clear all home created'
 
   # If the command is unknown
-  Unknown Command: '&b&lHome&f&l>> &eUnknown command'
+  Unknown Command: '&b&lHome&f&l>> &cUnknown command'
+
+  # If the command is for only player
+  Console Error: '&b&lHome&f&l>> &eYou must be a player to do that'
+
+  # If the home is already existed
+  Home Already Existed: '&b&lHome&f&l>> &eThis home is already existed'
+
+  # If the home saved successfully
+  Home Saved Successfully: '&b&lHome&f&l>> &eSaved successfully'
+
+  # Stated player is not existed
+  Player Not Exist: '&b&lHome&f&l>> &cPlayer is not existed'

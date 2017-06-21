@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -32,17 +33,24 @@ public class Util {
         return "lang-" + language.toLowerCase();
     }
 
-    public static void saveHome(Location location, Player player, Plugin plugin, String homename) {
+    public static void saveHome(Location location, String playername, Plugin plugin, String homename) {
         String world = location.getWorld().getName();
         double x = location.getX();
         double y = location.getY();
         double z = location.getZ();
         double yaw = location.getYaw();
         double pitch = location.getPitch();
-        String name = player.getName();
+        String name = playername;
 
         plugin.getDataFolder().mkdir();
         File file = new File(plugin.getDataFolder() + "/homes", name + ".yml");
+        if(!file.exists()) {
+            try {
+                file.createNewFile();
+            }catch(IOException e) {
+                e.printStackTrace();
+            }
+        }
         FileConfiguration config = YamlConfiguration.loadConfiguration(file);
         config.set(homename + ".world", world);
         config.set(homename + ".x", x);
@@ -57,8 +65,24 @@ public class Util {
         }
     }
 
-    public Location getHome(Player player, Plugin plugin, String homename) {
-        String name = player.getName();
+    public static boolean homeExisted(String playername, Plugin plugin, String homename) {
+        String name = playername;
+        File file = new File(plugin.getDataFolder() + "/home", name + ".yml");
+        if(!file.exists()) {
+            return false;
+        }
+        FileConfiguration config = YamlConfiguration.loadConfiguration(file);
+        for(String names : config.getKeys(false)) {
+            if(names.equals(homename)) {
+                return true;
+            }
+            continue;
+        }
+        return false;
+    }
+
+    public static Location getHome(String playername, Plugin plugin, String homename) {
+        String name = playername;
         File file = new File(plugin.getDataFolder() + "/homes", name + ".yml");
         FileConfiguration config = YamlConfiguration.loadConfiguration(file);
         if(!file.exists()) {
