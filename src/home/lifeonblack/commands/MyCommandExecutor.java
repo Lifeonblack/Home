@@ -1,9 +1,13 @@
 package home.lifeonblack.commands;
 
+import home.lifeonblack.Home;
 import home.lifeonblack.Util.Util;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.entity.Player;
 
 /**
  * Created by Raymart on 6/20/2017.
@@ -15,8 +19,18 @@ public class MyCommandExecutor implements CommandExecutor {
         AbstractCommand command = new HelpCommand(sender);
 
         if(args.length == 0) {
-            command = new GoHomeCommand(sender);
-            command.execute(sender, cmd, label, args);
+            if(sender instanceof ConsoleCommandSender) {
+                command.execute(sender, cmd, label, args);
+                return true;
+            }
+            Player player = (Player) sender;
+            if(!Util.homeExisted(player.getName(), Home.getInstance(), "default")) {
+                player.sendMessage(Util.getLocalizedMessage("No Home"));
+                return true;
+            }
+            Location home = Util.getHome(player.getName(), Home.getInstance(), "default");
+            player.teleport(home);
+            player.sendMessage(Util.getLocalizedMessage("Home Teleport").replace("%home%", "default"));
             return true;
         }
 

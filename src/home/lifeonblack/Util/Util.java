@@ -1,5 +1,6 @@
 package home.lifeonblack.Util;
 
+import home.lifeonblack.Home;
 import home.lifeonblack.files.Language;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -126,5 +127,17 @@ public class Util {
         for(String homenames : config.getKeys(false)) {
             config.set(homenames, null);
         }
+    }
+
+    public static int getLimit(Player player) {
+        if(player.hasPermission("home.set.*")) {
+            return -1;
+        }
+        for(int i = Home.getInstance().getConfig().getInt("Limit"); i > 0; i++) {
+            if(player.hasPermission("home.set." + i)) {
+                return i;
+            }
+        }
+        return 0;
     }
 }

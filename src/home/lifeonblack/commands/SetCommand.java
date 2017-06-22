@@ -50,12 +50,12 @@ public class SetCommand extends AbstractCommand {
 
         // home set [name]
         if(args.length == 2) {
-            Integer permCount = Util.getHomeCount(sender.getName(), Home.getInstance()) + 1;
-            if(!hasPermission(".multi." + permCount.toString())) {
-                sender.sendMessage(Util.getLocalizedMessage("No Permission"));
+            Integer homeCount = Util.getHomeCount(sender.getName(), Home.getInstance());
+            Player player = (Player) sender;
+            if(Util.getLimit(player) <= (int) homeCount || Util.getLimit(player) != -1) {
+                player.sendMessage(Util.getLocalizedMessage("Home Limit"));
                 return;
             }
-            Player player = (Player) sender;
             if(Util.homeExisted(player.getName(), Home.getInstance(), args[1])) {
                 player.sendMessage(Util.getLocalizedMessage("Home Already Existed"));
                 return;
@@ -66,7 +66,7 @@ public class SetCommand extends AbstractCommand {
         }
         // home set <player> [name]
         if(args.length == 3) {
-            if(!hasPermission(".admin")) {
+            if(!hasPermission(".other")) {
                 sender.sendMessage(Util.getLocalizedMessage("No Permission"));
                 return;
             }

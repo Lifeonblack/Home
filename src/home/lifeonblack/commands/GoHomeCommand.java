@@ -37,7 +37,7 @@ public class GoHomeCommand extends AbstractCommand {
         }
 
         // home go
-        if(args.length == 1 || args.length == 0) {
+        if(args.length == 1) {
             Player player = (Player) sender;
             if(!Util.homeExisted(player.getName(), Home.getInstance(), "default")) {
                 player.sendMessage(Util.getLocalizedMessage("No Home"));

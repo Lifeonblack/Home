@@ -134,6 +134,10 @@ public abstract class AbstractCommand {
         return sender.hasPermission(permission) || isSenderConsole() || isSenderRemoteConsole();
     }
 
+    public boolean isPermissible(String permission) {
+        return sender.hasPermission(permission) || isSenderConsole() || isSenderRemoteConsole();
+    }
+
     /**
      * Sends the usage message to the sender.
      */

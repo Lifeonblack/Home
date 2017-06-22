@@ -18,15 +18,17 @@ lang-english:
   Help:
 
     help: '&e/home help Displays this, [must] <option>'
-    list: '&e/home list <player> List all homes'
     set: '&e/home set <player> <name> Set your home'
-    invite: '&e/home invite [player] Invite someone to your home'
-    visit: '&e/home visit [name] Visit someone''s home'
-    delete: '&e/home delete <player> [name] Delete a home'
-    vtoggle: '&e/home vtoggle <option> Toggle has 3 option: invite-only, public, disable'
-    fvisit: '&e/home fvisit [name] Force visit to someone''s home'
-    clear: '&e/home clear <player> Clear all home created'
     go: '&e/home go <name> Go to a home'
+    list: '&e/home list <player> List all homes'
+    replace: '&e/home replace <player> <name> Replace home''s location'
+    invite: '&e/home invite [player] <name> Invite someone to your home'
+    visit: '&e/home visit [player] <name> Visit someone''s home'
+    delete: '&e/home delete <player> <name> Delete a home'
+    vtoggle: '&e/home vtoggle <option> Toggle has 3 option: invite-only, public, disable'
+    fvisit: '&e/home fvisit [player] <name> Force visit to someone''s home'
+    clear: '&e/home clear <player> Clear all home created'
+    reload: '&e/home reload Reload all configs'
 
   # If the command is unknown
   Unknown Command: '&b&lHome&f&l>> &cUnknown command'
@@ -53,4 +55,7 @@ lang-english:
   No Home: '&b&lHome&f&l>> &eHome is not existed'
 
   # Home teleport successfully
-  Home Teleport: '&b&lHome&f&l>> &eSuccessfully teleported to &7%home%'
+  Home Teleport: '&b&lHome&f&l>> &eSuccessfully teleported to &7%home% &ehome'
+
+  # Home limit message
+  Home Limit: '&b&lHome&f&l>> &cYou already exceeded the allowed number of homes'
