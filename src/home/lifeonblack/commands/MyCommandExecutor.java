@@ -23,6 +23,10 @@ public class MyCommandExecutor implements CommandExecutor {
                 command.execute(sender, cmd, label, args);
                 return true;
             }
+            if(!sender.hasPermission("home.go")) {
+                sender.sendMessage(Util.getLocalizedMessage("No Permission"));
+                return true;
+            }
             Player player = (Player) sender;
             if(!Util.homeExisted(player.getName(), Home.getInstance(), "default")) {
                 player.sendMessage(Util.getLocalizedMessage("No Home"));
