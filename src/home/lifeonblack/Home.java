@@ -17,6 +17,7 @@ public class Home extends JavaPlugin {
         getLogger().info("has been enabled");
         getCommand("home").setExecutor(new MyCommandExecutor());
         language.setup(this);
+        saveDefaultConfig();
         getCommand("home").setTabCompleter(new HomeTabCompleter());
     }
 
